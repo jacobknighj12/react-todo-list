@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import DateStamp from "./DateStamp"
+
 function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {
@@ -7,17 +9,17 @@ function usePrevious(value) {
   return ref.current;
 }
 export default function Todo(props) {
-  const [isEditing, setEditing] = useState(false);
+  let [isEditing, setEditing] = useState(false);
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
   const wasEditing = usePrevious(isEditing);
-
+  
   function handleChange(e) {
     setNewName(e.target.value);
   }
 
 
-  const [newName, setNewName] = useState('');
+  let [newName, setNewName] = useState('');
   function handleSubmit(e) {
     e.preventDefault();
     props.editTask(props.id, newName);
@@ -57,9 +59,16 @@ export default function Todo(props) {
         </button>
       </div>
     </form>
+    
   );
   const viewTemplate = (
+    
     <div className="stack-small">
+      
+      
+      
+      <hr/>
+      <DateStamp/>
       <div className="c-cb">
           <input
             id={props.id}
@@ -72,6 +81,7 @@ export default function Todo(props) {
           </label>
             </div>
           <div className="btn-group">
+            
           <button
                type="button"
                className="btn"

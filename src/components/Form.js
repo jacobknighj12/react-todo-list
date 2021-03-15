@@ -6,11 +6,11 @@ function Form(props) {
      props.addTask(name);
      setName("");
      }
-  
+     
   function handleChange(e) {
     setName(e.target.value);
   }
-  const [name, setName] = useState();
+  const [name, setName] = useState('');
   return (
     
     
@@ -21,20 +21,24 @@ function Form(props) {
           What needs to be done?
         </label>
       </h2>
+      <hr/>
             <input
               type="text"
              id="new-todo-input"
+            placeholder="Enter Task."
               className="input input__lg"
              name="text"
              autoComplete="off"
              value={name}
                onChange={handleChange}
               />
+              <hr/>
       <button type="submit" className="btn btn__primary btn__lg">
         Add
       </button>
     </form>
   );
+  
 }
 
 export default Form;

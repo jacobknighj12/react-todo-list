@@ -3,6 +3,8 @@ import { nanoid } from "nanoid";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
+const data = localStorage.getItem('MyData')
+localStorage.setItem('myData', data);
 
 function usePrevious(value) {
   const ref = useRef();
@@ -20,8 +22,9 @@ const FILTER_MAP = {
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 function App(props) {
-  const [tasks, setTasks] = useState(props.tasks);
-  const [filter, setFilter] = useState('All');
+  let [tasks, setTasks] = useState(props.tasks);
+  let [filter, setFilter] = useState('All');
+  
   const filterList = FILTER_NAMES.map(name => (
   
   <FilterButton
@@ -98,13 +101,17 @@ function App(props) {
   
   return (
   <div className="todoapp stack-large">
+    <hr/>
   <Form addTask={addTask}/>
+  <hr/>
   <div className="filters btn-group stack-exception">
   {filterList}
   </div>
   <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
   {headingText}
+  
   </h2>
+  <hr/>
   <ul
         //role="list"
   className="todo-list stack-large stack-exception"
